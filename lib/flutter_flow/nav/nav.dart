@@ -30,12 +30,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => const CaptacaoWidget(),
+      errorBuilder: (context, state) => appStateNotifier.showSplashImage
+          ? Builder(
+              builder: (context) => Container(
+                color: Colors.transparent,
+                child: Image.asset(
+                  'assets/images/tecido-lona-algod-o-cru-ta-15---viivatex-5c3crhdldj.webp',
+                  fit: BoxFit.cover,
+                ),
+              ),
+            )
+          : const CaptacaoWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => const CaptacaoWidget(),
+          builder: (context, _) => appStateNotifier.showSplashImage
+              ? Builder(
+                  builder: (context) => Container(
+                    color: Colors.transparent,
+                    child: Image.asset(
+                      'assets/images/tecido-lona-algod-o-cru-ta-15---viivatex-5c3crhdldj.webp',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                )
+              : const CaptacaoWidget(),
         ),
         FFRoute(
           name: 'CAPTACAO',

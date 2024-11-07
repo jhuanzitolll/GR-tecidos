@@ -123,7 +123,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                           FormFieldController<String>(null),
                       options: dropDownUsuariosRowList
                           .map((e) => valueOrDefault<String>(
-                                e.nome,
+                                e.usuario,
                                 'Vendedor',
                               ))
                           .toList(),
