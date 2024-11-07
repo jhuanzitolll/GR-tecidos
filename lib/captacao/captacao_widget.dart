@@ -99,7 +99,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                 ),
                 FutureBuilder<List<UsuariosRow>>(
                   future: UsuariosTable().queryRows(
-                    queryFn: (q) => q.order('nome'),
+                    queryFn: (q) => q.order('usuario'),
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
