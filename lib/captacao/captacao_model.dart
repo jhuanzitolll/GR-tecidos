@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
@@ -10,6 +11,8 @@ class CaptacaoModel extends FlutterFlowModel<CaptacaoWidget> {
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
+  // Stores action output result for [Backend Call - API (encontraUsuario)] action in DropDown widget.
+  ApiCallResponse? apiResultpsx;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
@@ -18,8 +21,12 @@ class CaptacaoModel extends FlutterFlowModel<CaptacaoWidget> {
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
+  // Stores action output result for [Backend Call - Query Rows] action in Button widget.
+  List<ClientesRow>? retornoConfereFoneCLi;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
   ClientesRow? addCliRetorno;
+  // Stores action output result for [Backend Call - API (MandaOinoWhats)] action in Button widget.
+  ApiCallResponse? apiResultu20;
 
   @override
   void initState(BuildContext context) {}

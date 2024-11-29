@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -5,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'captacao_model.dart';
 export 'captacao_model.dart';
 
@@ -43,6 +45,8 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -127,8 +131,24 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                                 'Vendedor',
                               ))
                           .toList(),
-                      onChanged: (val) =>
-                          safeSetState(() => _model.dropDownValue = val),
+                      onChanged: (val) async {
+                        safeSetState(() => _model.dropDownValue = val);
+                        _model.apiResultpsx = await EncontraUsuarioCall.call(
+                          usuario: _model.dropDownValue,
+                        );
+
+                        if ((_model.apiResultpsx?.succeeded ?? true)) {
+                          FFAppState().hostidWhats = EncontraUsuarioCall.hostid(
+                            (_model.apiResultpsx?.jsonBody ?? ''),
+                          )!;
+                          FFAppState().tokenWhats = EncontraUsuarioCall.codapi(
+                            (_model.apiResultpsx?.jsonBody ?? ''),
+                          )!;
+                          safeSetState(() {});
+                        }
+
+                        safeSetState(() {});
+                      },
                       width: MediaQuery.sizeOf(context).width * 0.9,
                       height: 60.0,
                       textStyle:
@@ -293,30 +313,92 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    _model.addCliRetorno = await ClientesTable().insert({
-                      'razao': _model.textController1.text,
-                      'nome': _model.textController1.text,
-                      'fone': _model.textController2.text,
-                      'area': _model.dropDownValue,
-                    });
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          valueOrDefault<String>(
-                            '${valueOrDefault<String>(
-                              _model.addCliRetorno?.nome,
-                              'Cliente Adicionado com  sucesso',
-                            )} Adicionado com sucesso.',
-                            ' Adicionado com sucesso.',
-                          ),
-                          style: TextStyle(
-                            color: FlutterFlowTheme.of(context).primaryText,
-                          ),
-                        ),
-                        duration: const Duration(milliseconds: 4000),
-                        backgroundColor: FlutterFlowTheme.of(context).secondary,
+                    _model.retornoConfereFoneCLi =
+                        await ClientesTable().queryRows(
+                      queryFn: (q) => q.eqOrNull(
+                        'fone',
+                        _model.textController2.text,
                       ),
                     );
+                    if (_model.retornoConfereFoneCLi!.isNotEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Cliente ja Existe na base de dados !',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: const Duration(milliseconds: 4000),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
+                        ),
+                      );
+
+                      safeSetState(() {});
+                    } else {
+                      _model.addCliRetorno = await ClientesTable().insert({
+                        'razao': _model.textController1.text,
+                        'nome': _model.textController1.text,
+                        'fone': _model.textController2.text,
+                        'area': _model.dropDownValue,
+                      });
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            valueOrDefault<String>(
+                              '${valueOrDefault<String>(
+                                _model.addCliRetorno?.nome,
+                                'Cliente Adicionado com  sucesso',
+                              )} Adicionado com sucesso.',
+                              ' Adicionado com sucesso.',
+                            ),
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: const Duration(milliseconds: 4000),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
+                        ),
+                      );
+                      _model.apiResultu20 = await MandaOinoWhatsCall.call(
+                        textonumero: _model.textController2.text,
+                        hostidwhats: FFAppState().hostidWhats,
+                        tokenwhats: FFAppState().tokenWhats,
+                      );
+
+                      if ((_model.apiResultu20?.succeeded ?? true)) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Saudação enviada.',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: const Duration(milliseconds: 1500),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Saudação NÃO enviada.',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: const Duration(milliseconds: 1500),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                          ),
+                        );
+                      }
+                    }
+
                     safeSetState(() {
                       _model.dropDownValueController?.reset();
                     });
