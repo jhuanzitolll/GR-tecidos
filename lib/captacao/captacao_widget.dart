@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'captacao_model.dart';
@@ -32,7 +33,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
 
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
-
+    _model.textFieldFocusNode2!.addListener(() => safeSetState(() {}));
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -125,12 +126,12 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                     return FlutterFlowDropDown<String>(
                       controller: _model.dropDownValueController ??=
                           FormFieldController<String>(null),
-                      options: dropDownUsuariosRowList
-                          .map((e) => valueOrDefault<String>(
-                                e.usuario,
-                                'Vendedor',
-                              ))
-                          .toList(),
+                      options: const [
+                        'VENDAS',
+                        'VENDEDOR 02',
+                        'VENDEDOR 03',
+                        'VENDEDOR 04'
+                      ],
                       onChanged: (val) async {
                         safeSetState(() => _model.dropDownValue = val);
                         _model.apiResultpsx = await EncontraUsuarioCall.call(
@@ -306,6 +307,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                           fontFamily: 'Plus Jakarta Sans',
                           letterSpacing: 0.0,
                         ),
+                    keyboardType: TextInputType.number,
                     cursorColor: FlutterFlowTheme.of(context).primaryText,
                     validator:
                         _model.textController2Validator.asValidator(context),
@@ -313,6 +315,52 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
+                    safeSetState(() {
+                      _model.textController2?.text = ((String var1) {
+                        return '55$var1';
+                      }(_model.textController2.text));
+                      _model.textFieldFocusNode2?.requestFocus();
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        _model.textController2?.selection =
+                            TextSelection.collapsed(
+                          offset: _model.textController2!.text.length,
+                        );
+                      });
+                    });
+                    _model.numeroConferido = await APIConfereNumeroCall.call(
+                      textonumero: _model.textController2.text,
+                      hostidwhats: FFAppState().hostidWhats,
+                      tokenwhats: FFAppState().tokenWhats,
+                    );
+
+                    safeSetState(() {
+                      _model.textController2?.text =
+                          APIConfereNumeroCall.nvalidado(
+                        (_model.numeroConferido?.jsonBody ?? ''),
+                      )!
+                              .first
+                              .toString();
+                      _model.textFieldFocusNode2?.requestFocus();
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        _model.textController2?.selection =
+                            TextSelection.collapsed(
+                          offset: _model.textController2!.text.length,
+                        );
+                      });
+                    });
+                    safeSetState(() {
+                      _model.textController2?.text = functions
+                          .newNumeroconferido(APIConfereNumeroCall.nvalidado(
+                        (_model.numeroConferido?.jsonBody ?? ''),
+                      )?.first?.toString())!;
+                      _model.textFieldFocusNode2?.requestFocus();
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        _model.textController2?.selection =
+                            TextSelection.collapsed(
+                          offset: _model.textController2!.text.length,
+                        );
+                      });
+                    });
                     _model.retornoConfereFoneCLi =
                         await ClientesTable().queryRows(
                       queryFn: (q) => q.eqOrNull(
@@ -357,7 +405,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),
                           ),
-                          duration: const Duration(milliseconds: 4000),
+                          duration: const Duration(milliseconds: 1900),
                           backgroundColor:
                               FlutterFlowTheme.of(context).secondary,
                         ),

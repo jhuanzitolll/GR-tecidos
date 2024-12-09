@@ -21,6 +21,8 @@ class CaptacaoModel extends FlutterFlowModel<CaptacaoWidget> {
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
+  // Stores action output result for [Backend Call - API (APIConfereNumero)] action in Button widget.
+  ApiCallResponse? numeroConferido;
   // Stores action output result for [Backend Call - Query Rows] action in Button widget.
   List<ClientesRow>? retornoConfereFoneCLi;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.

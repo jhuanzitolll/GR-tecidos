@@ -43,6 +43,46 @@ class MandaOinoWhatsCall {
   }
 }
 
+class APIConfereNumeroCall {
+  static Future<ApiCallResponse> call({
+    String? textonumero = '',
+    String? hostidwhats = '',
+    String? tokenwhats = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "cmd": "validate",
+  "list": [
+    "${escapeStringForJson(textonumero)}"
+  ]
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'APIConfereNumero',
+      apiUrl: 'https://$tokenwhats.apiwhatsgo.com/cgi/whatsapp/whatsgo.js',
+      callType: ApiCallType.POST,
+      headers: {
+        'hostid': '$hostidwhats',
+        'token': '$tokenwhats',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static List? nvalidado(dynamic response) => getJsonField(
+        response,
+        r'''$.validate''',
+        true,
+      ) as List?;
+}
+
 class EncontraUsuarioCall {
   static Future<ApiCallResponse> call({
     String? usuario = '',
