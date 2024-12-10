@@ -452,6 +452,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                           '0000',
                         ),
                         'area': _model.dropDownValue,
+                        'limiti': '1',
                       });
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
