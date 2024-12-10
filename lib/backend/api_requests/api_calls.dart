@@ -19,7 +19,7 @@ class MandaOinoWhatsCall {
   "cmd": "send",
   "type": "text",
   "number": ["${escapeStringForJson(textonumero)}"],
-  "value": "Seja bem-vindo a *GR Distribuidora de Tecidos*",
+  "value": "Oi",
   "id": "t123"
 }''';
     return ApiManager.instance.makeApiCall(
