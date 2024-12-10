@@ -44,6 +44,12 @@ class FFAppState extends ChangeNotifier {
     _tokenWhats = value;
     prefs.setString('ff_tokenWhats', value);
   }
+
+  String _numeroCompleto = '';
+  String get numeroCompleto => _numeroCompleto;
+  set numeroCompleto(String value) {
+    _numeroCompleto = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

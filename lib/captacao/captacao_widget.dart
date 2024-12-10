@@ -318,7 +318,10 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                     var shouldSetState = false;
                     _model.statusZERO = _model.textController2.text.length;
                     safeSetState(() {});
-                    if (_model.statusZERO != 11) {
+                    if (_model.statusZERO == 11) {
+                      FFAppState().numeroCompleto = _model.textController2.text;
+                      safeSetState(() {});
+                    } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text(
@@ -335,6 +338,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                       if (shouldSetState) safeSetState(() {});
                       return;
                     }
+
                     _model.numeroConferido = await APIConfereNumeroCall.call(
                       textonumero: _model.textController2.text,
                       hostidwhats: FFAppState().hostidWhats,
@@ -405,9 +409,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                         await ClientesTable().queryRows(
                       queryFn: (q) => q.eqOrNull(
                         'fone',
-                        _model.textController2.text.substring(
-                          2,
-                        ),
+                        _model.textController2.text,
                       ),
                     );
                     shouldSetState = true;
@@ -468,12 +470,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                       _model.addCliRetorno = await ClientesTable().insert({
                         'razao': _model.textController1.text,
                         'nome': _model.textController1.text,
-                        'fone': valueOrDefault<String>(
-                          _model.textController2.text.substring(
-                            2,
-                          ),
-                          '0000',
-                        ),
+                        'fone': FFAppState().numeroCompleto,
                         'area': _model.dropDownValue,
                         'limiti': '1',
                       });
