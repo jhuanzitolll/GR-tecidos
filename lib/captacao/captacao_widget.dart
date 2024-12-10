@@ -315,12 +315,33 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
+                    var shouldSetState = false;
+                    _model.statusZERO = _model.textController2.text.length;
+                    safeSetState(() {});
+                    if (_model.statusZERO != 11) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Quantidade de caracteres invalida. Utilize a formatação (00) 0 0000 0000',
+                            style: TextStyle(
+                              color: Color(0xFFAF0608),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          duration: Duration(milliseconds: 4000),
+                          backgroundColor: Color(0xFFCFEFEB),
+                        ),
+                      );
+                      if (shouldSetState) safeSetState(() {});
+                      return;
+                    }
                     _model.numeroConferido = await APIConfereNumeroCall.call(
                       textonumero: _model.textController2.text,
                       hostidwhats: FFAppState().hostidWhats,
                       tokenwhats: FFAppState().tokenWhats,
                     );
 
+                    shouldSetState = true;
                     if (APIConfereNumeroCall.status(
                           (_model.numeroConferido?.jsonBody ?? ''),
                         ).toString() ==
@@ -389,6 +410,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                         ),
                       ),
                     );
+                    shouldSetState = true;
                     if (_model.retornoConfereFoneCLi!.isNotEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -412,6 +434,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                         tokenwhats: FFAppState().tokenWhats,
                       );
 
+                      shouldSetState = true;
                       if ((_model.apiMandaOi?.succeeded ?? true)) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
@@ -454,6 +477,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                         'area': _model.dropDownValue,
                         'limiti': '1',
                       });
+                      shouldSetState = true;
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
@@ -482,8 +506,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                       _model.textController2?.clear();
                       _model.textController1?.clear();
                     });
-
-                    safeSetState(() {});
+                    if (shouldSetState) safeSetState(() {});
                   },
                   text: 'Enviar',
                   options: FFButtonOptions(
