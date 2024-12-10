@@ -19,7 +19,7 @@ class MandaOinoWhatsCall {
   "cmd": "send",
   "type": "text",
   "number": ["${escapeStringForJson(textonumero)}"],
-  "value": "*Oi*",
+  "value": "Seja bem-vindo a *GR Distribuidora de Tecidos*",
   "id": "t123"
 }''';
     return ApiManager.instance.makeApiCall(
@@ -41,6 +41,11 @@ class MandaOinoWhatsCall {
       alwaysAllowBody: false,
     );
   }
+
+  static int? status(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.status''',
+      ));
 }
 
 class APIConfereNumeroCall {
@@ -81,6 +86,10 @@ class APIConfereNumeroCall {
         r'''$.validate''',
         true,
       ) as List?;
+  static dynamic status(dynamic response) => getJsonField(
+        response,
+        r'''$.status''',
+      );
 }
 
 class EncontraUsuarioCall {

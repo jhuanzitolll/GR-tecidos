@@ -315,57 +315,78 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    safeSetState(() {
-                      _model.textController2?.text = ((String var1) {
-                        return '55$var1';
-                      }(_model.textController2.text));
-                      _model.textFieldFocusNode2?.requestFocus();
-                      WidgetsBinding.instance.addPostFrameCallback((_) {
-                        _model.textController2?.selection =
-                            TextSelection.collapsed(
-                          offset: _model.textController2!.text.length,
-                        );
-                      });
-                    });
                     _model.numeroConferido = await APIConfereNumeroCall.call(
                       textonumero: _model.textController2.text,
                       hostidwhats: FFAppState().hostidWhats,
                       tokenwhats: FFAppState().tokenWhats,
                     );
 
-                    safeSetState(() {
-                      _model.textController2?.text =
-                          APIConfereNumeroCall.nvalidado(
-                        (_model.numeroConferido?.jsonBody ?? ''),
-                      )!
-                              .first
-                              .toString();
-                      _model.textFieldFocusNode2?.requestFocus();
-                      WidgetsBinding.instance.addPostFrameCallback((_) {
-                        _model.textController2?.selection =
-                            TextSelection.collapsed(
-                          offset: _model.textController2!.text.length,
-                        );
+                    if (APIConfereNumeroCall.status(
+                          (_model.numeroConferido?.jsonBody ?? ''),
+                        ).toString() ==
+                        '0') {
+                      safeSetState(() {
+                        _model.textController2?.text = ((String var1) {
+                          return '55$var1';
+                        }(_model.textController2.text));
+                        _model.textFieldFocusNode2?.requestFocus();
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          _model.textController2?.selection =
+                              TextSelection.collapsed(
+                            offset: _model.textController2!.text.length,
+                          );
+                        });
                       });
-                    });
-                    safeSetState(() {
-                      _model.textController2?.text = functions
-                          .newNumeroconferido(APIConfereNumeroCall.nvalidado(
-                        (_model.numeroConferido?.jsonBody ?? ''),
-                      )?.first?.toString())!;
-                      _model.textFieldFocusNode2?.requestFocus();
-                      WidgetsBinding.instance.addPostFrameCallback((_) {
-                        _model.textController2?.selection =
-                            TextSelection.collapsed(
-                          offset: _model.textController2!.text.length,
-                        );
+                      safeSetState(() {
+                        _model.textController2?.text =
+                            APIConfereNumeroCall.nvalidado(
+                          (_model.numeroConferido?.jsonBody ?? ''),
+                        )!
+                                .first
+                                .toString();
+                        _model.textFieldFocusNode2?.requestFocus();
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          _model.textController2?.selection =
+                              TextSelection.collapsed(
+                            offset: _model.textController2!.text.length,
+                          );
+                        });
                       });
-                    });
+                      safeSetState(() {
+                        _model.textController2?.text = functions
+                            .newNumeroconferido(APIConfereNumeroCall.nvalidado(
+                          (_model.numeroConferido?.jsonBody ?? ''),
+                        )?.first?.toString())!;
+                        _model.textFieldFocusNode2?.requestFocus();
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          _model.textController2?.selection =
+                              TextSelection.collapsed(
+                            offset: _model.textController2!.text.length,
+                          );
+                        });
+                      });
+                    } else {
+                      safeSetState(() {
+                        _model.textController2?.text = ((String var1) {
+                          return '55$var1';
+                        }(_model.textController2.text));
+                        _model.textFieldFocusNode2?.requestFocus();
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          _model.textController2?.selection =
+                              TextSelection.collapsed(
+                            offset: _model.textController2!.text.length,
+                          );
+                        });
+                      });
+                    }
+
                     _model.retornoConfereFoneCLi =
                         await ClientesTable().queryRows(
                       queryFn: (q) => q.eqOrNull(
                         'fone',
-                        _model.textController2.text,
+                        _model.textController2.text.substring(
+                          2,
+                        ),
                       ),
                     );
                     if (_model.retornoConfereFoneCLi!.isNotEmpty) {
@@ -377,7 +398,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),
                           ),
-                          duration: const Duration(milliseconds: 4000),
+                          duration: const Duration(milliseconds: 2600),
                           backgroundColor:
                               FlutterFlowTheme.of(context).secondary,
                         ),
@@ -385,38 +406,13 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
 
                       safeSetState(() {});
                     } else {
-                      _model.addCliRetorno = await ClientesTable().insert({
-                        'razao': _model.textController1.text,
-                        'nome': _model.textController1.text,
-                        'fone': _model.textController2.text,
-                        'area': _model.dropDownValue,
-                      });
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            valueOrDefault<String>(
-                              '${valueOrDefault<String>(
-                                _model.addCliRetorno?.nome,
-                                'Cliente Adicionado com  sucesso',
-                              )} Adicionado com sucesso.',
-                              ' Adicionado com sucesso.',
-                            ),
-                            style: TextStyle(
-                              color: FlutterFlowTheme.of(context).primaryText,
-                            ),
-                          ),
-                          duration: const Duration(milliseconds: 1900),
-                          backgroundColor:
-                              FlutterFlowTheme.of(context).secondary,
-                        ),
-                      );
-                      _model.apiResultu20 = await MandaOinoWhatsCall.call(
+                      _model.apiMandaOi = await MandaOinoWhatsCall.call(
                         textonumero: _model.textController2.text,
                         hostidwhats: FFAppState().hostidWhats,
                         tokenwhats: FFAppState().tokenWhats,
                       );
 
-                      if ((_model.apiResultu20?.succeeded ?? true)) {
+                      if ((_model.apiMandaOi?.succeeded ?? true)) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
@@ -445,6 +441,37 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                           ),
                         );
                       }
+
+                      _model.addCliRetorno = await ClientesTable().insert({
+                        'razao': _model.textController1.text,
+                        'nome': _model.textController1.text,
+                        'fone': valueOrDefault<String>(
+                          _model.textController2.text.substring(
+                            2,
+                          ),
+                          '0000',
+                        ),
+                        'area': _model.dropDownValue,
+                      });
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            valueOrDefault<String>(
+                              '${valueOrDefault<String>(
+                                _model.addCliRetorno?.nome,
+                                'Cliente Adicionado com  sucesso',
+                              )} Adicionado com sucesso.',
+                              ' Adicionado com sucesso.',
+                            ),
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: const Duration(milliseconds: 1900),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
+                        ),
+                      );
                     }
 
                     safeSetState(() {

@@ -6,6 +6,10 @@ import 'captacao_widget.dart' show CaptacaoWidget;
 import 'package:flutter/material.dart';
 
 class CaptacaoModel extends FlutterFlowModel<CaptacaoWidget> {
+  ///  Local state fields for this page.
+
+  int statusZERO = 0;
+
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for DropDown widget.
@@ -25,10 +29,10 @@ class CaptacaoModel extends FlutterFlowModel<CaptacaoWidget> {
   ApiCallResponse? numeroConferido;
   // Stores action output result for [Backend Call - Query Rows] action in Button widget.
   List<ClientesRow>? retornoConfereFoneCLi;
+  // Stores action output result for [Backend Call - API (MandaOinoWhats)] action in Button widget.
+  ApiCallResponse? apiMandaOi;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
   ClientesRow? addCliRetorno;
-  // Stores action output result for [Backend Call - API (MandaOinoWhats)] action in Button widget.
-  ApiCallResponse? apiResultu20;
 
   @override
   void initState(BuildContext context) {}
