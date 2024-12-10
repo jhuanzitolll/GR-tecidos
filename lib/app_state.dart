@@ -50,6 +50,12 @@ class FFAppState extends ChangeNotifier {
   set numeroCompleto(String value) {
     _numeroCompleto = value;
   }
+
+  String _numeroParaConferir = '';
+  String get numeroParaConferir => _numeroParaConferir;
+  set numeroParaConferir(String value) {
+    _numeroParaConferir = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

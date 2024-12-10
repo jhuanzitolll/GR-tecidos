@@ -405,11 +405,16 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                       });
                     }
 
+                    FFAppState().numeroParaConferir =
+                        _model.textController2.text.substring(
+                      2,
+                    );
+                    safeSetState(() {});
                     _model.retornoConfereFoneCLi =
                         await ClientesTable().queryRows(
                       queryFn: (q) => q.eqOrNull(
                         'fone',
-                        _model.textController2.text,
+                        FFAppState().numeroParaConferir,
                       ),
                     );
                     shouldSetState = true;
@@ -420,11 +425,11 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                             'Cliente ja Existe na base de dados !',
                             style: TextStyle(
                               color: FlutterFlowTheme.of(context).primaryText,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                           duration: const Duration(milliseconds: 2600),
-                          backgroundColor:
-                              FlutterFlowTheme.of(context).secondary,
+                          backgroundColor: const Color(0xFFF0383C),
                         ),
                       );
 
