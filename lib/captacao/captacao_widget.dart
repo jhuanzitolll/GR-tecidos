@@ -49,7 +49,10 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -367,7 +370,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                             APIConfereNumeroCall.nvalidado(
                           (_model.numeroConferido?.jsonBody ?? ''),
                         )!
-                                .first
+                                .firstOrNull!
                                 .toString();
                         _model.textFieldFocusNode2?.requestFocus();
                         WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -381,7 +384,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                         _model.textController2?.text = functions
                             .newNumeroconferido(APIConfereNumeroCall.nvalidado(
                           (_model.numeroConferido?.jsonBody ?? ''),
-                        )?.first?.toString())!;
+                        )?.firstOrNull?.toString())!;
                         _model.textFieldFocusNode2?.requestFocus();
                         WidgetsBinding.instance.addPostFrameCallback((_) {
                           _model.textController2?.selection =
@@ -410,6 +413,42 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                       2,
                     );
                     safeSetState(() {});
+                    _model.retornoNomejaExiste =
+                        await ClientesTable().queryRows(
+                      queryFn: (q) => q.eqOrNull(
+                        'razao',
+                        _model.textController1.text,
+                      ),
+                    );
+                    shouldSetState = true;
+                    if ((_model.retornoNomejaExiste != null &&
+                            (_model.retornoNomejaExiste)!.isNotEmpty) ==
+                        false) {
+                      safeSetState(() {
+                        _model.textController1?.text =
+                            '${_model.textController1.text}  - ${_model.textController2.text.substring(
+                          5,
+                        )}';
+                        _model.textFieldFocusNode1?.requestFocus();
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          _model.textController1?.selection =
+                              TextSelection.collapsed(
+                            offset: _model.textController1!.text.length,
+                          );
+                        });
+                      });
+                    }
+                    safeSetState(() {
+                      _model.textController1?.text =
+                          (_model.textController1.text.toUpperCase());
+                      _model.textFieldFocusNode1?.requestFocus();
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        _model.textController1?.selection =
+                            TextSelection.collapsed(
+                          offset: _model.textController1!.text.length,
+                        );
+                      });
+                    });
                     _model.retornoConfereFoneCLi =
                         await ClientesTable().queryRows(
                       queryFn: (q) => q.eqOrNull(
@@ -474,7 +513,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
 
                       _model.addCliRetorno = await ClientesTable().insert({
                         'razao': _model.textController1.text,
-                        'nome': _model.textController1.text,
+                        'nome': _model.textController1.text.toUpperCase(),
                         'fone': FFAppState().numeroCompleto,
                         'area': _model.dropDownValue,
                         'limiti': '1',

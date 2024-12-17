@@ -28,6 +28,8 @@ class CaptacaoModel extends FlutterFlowModel<CaptacaoWidget> {
   // Stores action output result for [Backend Call - API (APIConfereNumero)] action in Button widget.
   ApiCallResponse? numeroConferido;
   // Stores action output result for [Backend Call - Query Rows] action in Button widget.
+  List<ClientesRow>? retornoNomejaExiste;
+  // Stores action output result for [Backend Call - Query Rows] action in Button widget.
   List<ClientesRow>? retornoConfereFoneCLi;
   // Stores action output result for [Backend Call - API (MandaOinoWhats)] action in Button widget.
   ApiCallResponse? apiMandaOi;
