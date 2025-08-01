@@ -9,7 +9,7 @@ class CabecalhoTable extends SupabaseTable<CabecalhoRow> {
 }
 
 class CabecalhoRow extends SupabaseDataRow {
-  CabecalhoRow(super.data);
+  CabecalhoRow(Map<String, dynamic> data) : super(data);
 
   @override
   SupabaseTable get table => CabecalhoTable();

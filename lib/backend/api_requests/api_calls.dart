@@ -24,11 +24,11 @@ class MandaOinoWhatsCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'MandaOinoWhats',
-      apiUrl: 'https://$tokenwhats.apiwhatsgo.com/cgi/whatsapp/whatsgo.js',
+      apiUrl: 'https://${tokenwhats}.apiwhatsgo.com/cgi/whatsapp/whatsgo.js',
       callType: ApiCallType.POST,
       headers: {
-        'hostid': '$hostidwhats',
-        'token': '$tokenwhats',
+        'hostid': '${hostidwhats}',
+        'token': '${tokenwhats}',
       },
       params: {},
       body: ffApiRequestBody,
@@ -63,11 +63,11 @@ class APIConfereNumeroCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'APIConfereNumero',
-      apiUrl: 'https://$tokenwhats.apiwhatsgo.com/cgi/whatsapp/whatsgo.js',
+      apiUrl: 'https://${tokenwhats}.apiwhatsgo.com/cgi/whatsapp/whatsgo.js',
       callType: ApiCallType.POST,
       headers: {
-        'hostid': '$hostidwhats',
-        'token': '$tokenwhats',
+        'hostid': '${hostidwhats}',
+        'token': '${tokenwhats}',
       },
       params: {},
       body: ffApiRequestBody,
@@ -99,7 +99,7 @@ class EncontraUsuarioCall {
     return ApiManager.instance.makeApiCall(
       callName: 'encontraUsuario',
       apiUrl:
-          'https://nlmnbivhwgsnchfcvlwo.supabase.co/rest/v1/usuarios?usuario=ilike.$usuario&select=*',
+          'https://nlmnbivhwgsnchfcvlwo.supabase.co/rest/v1/usuarios?usuario=ilike.${usuario}&select=*',
       callType: ApiCallType.GET,
       headers: {
         'apikey':
@@ -133,6 +133,42 @@ class EncontraUsuarioCall {
         response,
         r'''$[:].nome''',
       ));
+}
+
+class ReservaCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'reserva',
+      apiUrl: 'a',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ReservaaCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'reservaa',
+      apiUrl: 'a',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 class ApiPagingParams {

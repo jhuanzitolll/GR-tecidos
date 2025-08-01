@@ -7,12 +7,16 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'captacao_model.dart';
 export 'captacao_model.dart';
 
 class CaptacaoWidget extends StatefulWidget {
   const CaptacaoWidget({super.key});
+
+  static String routeName = 'CAPTACAO';
+  static String routePath = '/captacao';
 
   @override
   State<CaptacaoWidget> createState() => _CaptacaoWidgetState();
@@ -74,7 +78,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                 Container(
                   width: MediaQuery.sizeOf(context).width * 1.0,
                   height: 200.0,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Color(0x00FFFFFF),
                   ),
                   child: Column(
@@ -84,22 +88,38 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                         'GR ',
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Plus Jakarta Sans',
-                              color: const Color(0xFF503D2E),
+                              font: GoogleFonts.plusJakartaSans(
+                                fontWeight: FontWeight.w800,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
+                              color: Color(0xFF503D2E),
                               fontSize: 80.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w800,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
                             ),
                       ),
                       Text(
                         'Tecidos',
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Plus Jakarta Sans',
-                              color: const Color(0xFF503D2E),
+                              font: GoogleFonts.plusJakartaSans(
+                                fontWeight: FontWeight.w800,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
+                              color: Color(0xFF503D2E),
                               fontSize: 40.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w800,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
                             ),
                       ),
                     ],
@@ -129,7 +149,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                     return FlutterFlowDropDown<String>(
                       controller: _model.dropDownValueController ??=
                           FormFieldController<String>(null),
-                      options: const [
+                      options: [
                         'VENDAS',
                         'VENDEDOR 02',
                         'VENDEDOR 03',
@@ -157,8 +177,21 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                       height: 60.0,
                       textStyle:
                           FlutterFlowTheme.of(context).bodyMedium.override(
-                                fontFamily: 'Plus Jakarta Sans',
+                                font: GoogleFonts.plusJakartaSans(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
+                                ),
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
                               ),
                       hintText: 'Select...',
                       icon: Icon(
@@ -173,7 +206,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                       borderWidth: 0.0,
                       borderRadius: 8.0,
                       margin:
-                          const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
                       hidesUnderline: true,
                       isOverButton: false,
                       isSearchable: false,
@@ -185,13 +218,19 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                   'Digite suas informações para que um vendedor entre em contato ',
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Plus Jakarta Sans',
+                        font: GoogleFonts.plusJakartaSans(
+                          fontWeight: FontWeight.bold,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                        ),
                         fontSize: 20.0,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.bold,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                       ),
                 ),
-                SizedBox(
+                Container(
                   width: MediaQuery.sizeOf(context).width * 0.8,
                   child: TextFormField(
                     controller: _model.textController1,
@@ -203,14 +242,40 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                       labelText: 'Seu Nome',
                       labelStyle:
                           FlutterFlowTheme.of(context).labelLarge.override(
-                                fontFamily: 'Outfit',
+                                font: GoogleFonts.outfit(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .fontStyle,
+                                ),
                                 fontSize: 20.0,
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .labelLarge
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .labelLarge
+                                    .fontStyle,
                               ),
                       hintStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Outfit',
+                                font: GoogleFonts.outfit(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontStyle,
+                                ),
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .fontStyle,
                               ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -220,7 +285,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Color(0x00000000),
                           width: 1.0,
                         ),
@@ -245,15 +310,27 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                           FlutterFlowTheme.of(context).secondaryBackground,
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Plus Jakarta Sans',
+                          font: GoogleFonts.plusJakartaSans(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
                           letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                         ),
                     cursorColor: FlutterFlowTheme.of(context).primaryText,
                     validator:
                         _model.textController1Validator.asValidator(context),
                   ),
                 ),
-                SizedBox(
+                Container(
                   width: MediaQuery.sizeOf(context).width * 0.7,
                   child: TextFormField(
                     controller: _model.textController2,
@@ -265,14 +342,40 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                       labelText: 'Whatsapp',
                       labelStyle:
                           FlutterFlowTheme.of(context).labelLarge.override(
-                                fontFamily: 'Outfit',
+                                font: GoogleFonts.outfit(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .fontStyle,
+                                ),
                                 fontSize: 20.0,
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .labelLarge
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .labelLarge
+                                    .fontStyle,
                               ),
                       hintStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Outfit',
+                                font: GoogleFonts.outfit(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontStyle,
+                                ),
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .fontStyle,
                               ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -282,7 +385,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Color(0x00000000),
                           width: 1.0,
                         ),
@@ -307,8 +410,20 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                           FlutterFlowTheme.of(context).secondaryBackground,
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Plus Jakarta Sans',
+                          font: GoogleFonts.plusJakartaSans(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
                           letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                         ),
                     keyboardType: TextInputType.number,
                     cursorColor: FlutterFlowTheme.of(context).primaryText,
@@ -318,7 +433,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    var shouldSetState = false;
+                    var _shouldSetState = false;
                     _model.statusZERO = _model.textController2.text.length;
                     safeSetState(() {});
                     if (_model.statusZERO == 11) {
@@ -326,7 +441,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                       safeSetState(() {});
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
+                        SnackBar(
                           content: Text(
                             'Quantidade de caracteres invalida. Utilize a formatação (00) 0 0000 0000',
                             style: TextStyle(
@@ -338,7 +453,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                           backgroundColor: Color(0xFFCFEFEB),
                         ),
                       );
-                      if (shouldSetState) safeSetState(() {});
+                      if (_shouldSetState) safeSetState(() {});
                       return;
                     }
 
@@ -348,22 +463,15 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                       tokenwhats: FFAppState().tokenWhats,
                     );
 
-                    shouldSetState = true;
-                    if (APIConfereNumeroCall.status(
+                    _shouldSetState = true;
+                    if ('${APIConfereNumeroCall.status(
                           (_model.numeroConferido?.jsonBody ?? ''),
-                        ).toString() ==
+                        ).toString()}' ==
                         '0') {
                       safeSetState(() {
                         _model.textController2?.text = ((String var1) {
-                          return '55$var1';
+                          return '55' + var1;
                         }(_model.textController2.text));
-                        _model.textFieldFocusNode2?.requestFocus();
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          _model.textController2?.selection =
-                              TextSelection.collapsed(
-                            offset: _model.textController2!.text.length,
-                          );
-                        });
                       });
                       safeSetState(() {
                         _model.textController2?.text =
@@ -372,39 +480,18 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                         )!
                                 .firstOrNull!
                                 .toString();
-                        _model.textFieldFocusNode2?.requestFocus();
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          _model.textController2?.selection =
-                              TextSelection.collapsed(
-                            offset: _model.textController2!.text.length,
-                          );
-                        });
                       });
                       safeSetState(() {
                         _model.textController2?.text = functions
                             .newNumeroconferido(APIConfereNumeroCall.nvalidado(
                           (_model.numeroConferido?.jsonBody ?? ''),
                         )?.firstOrNull?.toString())!;
-                        _model.textFieldFocusNode2?.requestFocus();
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          _model.textController2?.selection =
-                              TextSelection.collapsed(
-                            offset: _model.textController2!.text.length,
-                          );
-                        });
                       });
                     } else {
                       safeSetState(() {
                         _model.textController2?.text = ((String var1) {
-                          return '55$var1';
+                          return '55' + var1;
                         }(_model.textController2.text));
-                        _model.textFieldFocusNode2?.requestFocus();
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          _model.textController2?.selection =
-                              TextSelection.collapsed(
-                            offset: _model.textController2!.text.length,
-                          );
-                        });
                       });
                     }
 
@@ -420,7 +507,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                         _model.textController1.text,
                       ),
                     );
-                    shouldSetState = true;
+                    _shouldSetState = true;
                     if ((_model.retornoNomejaExiste != null &&
                             (_model.retornoNomejaExiste)!.isNotEmpty) ==
                         false) {
@@ -429,25 +516,11 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                             '${_model.textController1.text}  - ${_model.textController2.text.substring(
                           5,
                         )}';
-                        _model.textFieldFocusNode1?.requestFocus();
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          _model.textController1?.selection =
-                              TextSelection.collapsed(
-                            offset: _model.textController1!.text.length,
-                          );
-                        });
                       });
                     }
                     safeSetState(() {
                       _model.textController1?.text =
                           (_model.textController1.text.toUpperCase());
-                      _model.textFieldFocusNode1?.requestFocus();
-                      WidgetsBinding.instance.addPostFrameCallback((_) {
-                        _model.textController1?.selection =
-                            TextSelection.collapsed(
-                          offset: _model.textController1!.text.length,
-                        );
-                      });
                     });
                     _model.retornoConfereFoneCLi =
                         await ClientesTable().queryRows(
@@ -456,8 +529,8 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                         FFAppState().numeroParaConferir,
                       ),
                     );
-                    shouldSetState = true;
-                    if (_model.retornoConfereFoneCLi!.isNotEmpty) {
+                    _shouldSetState = true;
+                    if (_model.retornoConfereFoneCLi!.length > 0) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
@@ -467,8 +540,8 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          duration: const Duration(milliseconds: 2600),
-                          backgroundColor: const Color(0xFFF0383C),
+                          duration: Duration(milliseconds: 2600),
+                          backgroundColor: Color(0xFFF0383C),
                         ),
                       );
 
@@ -480,7 +553,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                         tokenwhats: FFAppState().tokenWhats,
                       );
 
-                      shouldSetState = true;
+                      _shouldSetState = true;
                       if ((_model.apiMandaOi?.succeeded ?? true)) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
@@ -490,7 +563,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
                             ),
-                            duration: const Duration(milliseconds: 1500),
+                            duration: Duration(milliseconds: 1500),
                             backgroundColor:
                                 FlutterFlowTheme.of(context).secondary,
                           ),
@@ -504,7 +577,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
                             ),
-                            duration: const Duration(milliseconds: 1500),
+                            duration: Duration(milliseconds: 1500),
                             backgroundColor:
                                 FlutterFlowTheme.of(context).secondary,
                           ),
@@ -518,7 +591,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                         'area': _model.dropDownValue,
                         'limiti': '1',
                       });
-                      shouldSetState = true;
+                      _shouldSetState = true;
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
@@ -533,7 +606,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),
                           ),
-                          duration: const Duration(milliseconds: 1900),
+                          duration: Duration(milliseconds: 1900),
                           backgroundColor:
                               FlutterFlowTheme.of(context).secondary,
                         ),
@@ -547,28 +620,36 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                       _model.textController2?.clear();
                       _model.textController1?.clear();
                     });
-                    if (shouldSetState) safeSetState(() {});
+                    if (_shouldSetState) safeSetState(() {});
                   },
                   text: 'Enviar',
                   options: FFButtonOptions(
                     width: MediaQuery.sizeOf(context).width * 0.4,
                     height: 50.0,
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle:
                         FlutterFlowTheme.of(context).titleMedium.override(
-                              fontFamily: 'Plus Jakarta Sans',
+                              font: GoogleFonts.plusJakartaSans(
+                                fontWeight: FontWeight.w800,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .titleMedium
+                                    .fontStyle,
+                              ),
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w800,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .titleMedium
+                                  .fontStyle,
                             ),
                     elevation: 0.0,
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
-              ].divide(const SizedBox(height: 16.0)).around(const SizedBox(height: 16.0)),
+              ].divide(SizedBox(height: 16.0)).around(SizedBox(height: 16.0)),
             ),
           ],
         ),
