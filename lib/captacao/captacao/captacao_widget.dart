@@ -223,6 +223,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                           fontStyle:
                               FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                         ),
+                        color: Color(0xFF55361E),
                         fontSize: 20.0,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.bold,
@@ -630,7 +631,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                         EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     iconPadding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).primary,
+                    color: Color(0xFFFD9441),
                     textStyle:
                         FlutterFlowTheme.of(context).titleMedium.override(
                               font: GoogleFonts.plusJakartaSans(
@@ -639,6 +640,7 @@ class _CaptacaoWidgetState extends State<CaptacaoWidget> {
                                     .titleMedium
                                     .fontStyle,
                               ),
+                              fontSize: 20.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w800,
                               fontStyle: FlutterFlowTheme.of(context)
